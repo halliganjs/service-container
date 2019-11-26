@@ -43,7 +43,7 @@ export interface ContainerInterface {
 
   /**
    * Add a service provider into the container to register one or many bindings
-   * as a unit. Provider instances are stored for soft resets.
+   * as a unit. Provider functions are stored for soft resets.
    *
    * @param  {ProviderInterface} provider
    * @return {this}

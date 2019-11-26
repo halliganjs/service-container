@@ -72,15 +72,17 @@ export class Container implements ContainerInterface {
 
   /**
    * Add a service provider into the container to register one or many bindings
-   * as a unit. Provider instances are stored for soft resets.
+   * as a unit. Provider functions are stored for soft resets.
    *
    * @param  {ProviderInterface} provider
    * @return {this}
    */
   public provider (provider: ProviderInterface): this {
-    this._providers.push(provider)
+    // Run the provider immediately
+    provider(this)
 
-    provider.register(this)
+    // Store the provider for use in resets
+    this._providers.push(provider)
 
     return this
   }
@@ -99,7 +101,7 @@ export class Container implements ContainerInterface {
     if (hard) {
       this._providers = []
     } else {
-      this._providers.forEach(provider => provider.register(this))
+      this._providers.forEach(provider => provider(this))
     }
 
     return this
