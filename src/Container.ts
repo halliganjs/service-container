@@ -6,26 +6,34 @@ import { ProviderInterface } from './interfaces/Provider'
 import { ResolverInterface } from './interfaces/Resolver'
 
 export class Container implements ContainerInterface {
-  protected bindings: { [key: string]: BindingInterface } = {}
+  /**
+   * @prop {{ [key: string]: BindingInterface }} _bindings
+   */
+  protected _bindings: { [key: string]: BindingInterface } = {}
+
+  /**
+   * @prop {Array<ProviderInterface>}
+   */
+  protected _providers: Array<ProviderInterface> = []
 
   public instance (key: string, value: any): this {
-    this.bindings[key] = new Binding(value)
+    this._bindings[key] = new Binding(value)
     return this
   }
 
   public singleton (key: string, resolver: ResolverInterface): this {
-    this.bindings[key] = new Binding(null, resolver)
+    this._bindings[key] = new Binding(null, resolver)
     return this
   }
 
   public binding (key: string, resolver: ResolverInterface): this {
-    this.bindings[key] = new Binding(null, resolver, true)
+    this._bindings[key] = new Binding(null, resolver, true)
     return this
   }
 
   public make (key: string): any {
-    if (this.bindings[key] !== undefined) {
-      return this.bindings[key].resolve(this)
+    if (this._bindings[key] !== undefined) {
+      return this._bindings[key].resolve(this)
     }
 
     throw new BindingResolutionError(key)
