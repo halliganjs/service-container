@@ -19,5 +19,12 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    // note you must disable the base rule as it can report incorrect errors
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "vars": "all",
+      "args": "after-used",
+      "ignoreRestSiblings": false
+    }]
   }
 }
