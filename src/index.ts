@@ -1,5 +1,5 @@
 import { Binding } from './Binding'
-import { BindingResolutionError } from './BindingResolutionError'
+import { BindingResolutionError } from './errors/BindingResolutionError'
 import { Container } from './Container'
 
 export {
