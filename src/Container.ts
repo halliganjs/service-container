@@ -16,21 +16,52 @@ export class Container implements ContainerInterface {
    */
   protected _providers: Array<ProviderInterface> = []
 
+  /**
+   * Bind a single instance or value into the container under the provided key.
+   *
+   * @param  {string} key
+   * @param  {any}    value
+   * @return {this}
+   */
   public instance (key: string, value: any): this {
     this._bindings[key] = new Binding(value)
     return this
   }
 
+  /**
+   * Bind a resolver function into the container under the provided key. The
+   * resolver will be run once and the resulting value will be returned for all
+   * subsequent resolutions.
+   *
+   * @param  {string}            key
+   * @param  {ResolverInterface} resolver
+   * @return {this}
+   */
   public singleton (key: string, resolver: ResolverInterface): this {
     this._bindings[key] = new Binding(null, resolver)
     return this
   }
 
+  /**
+   * Bind a resolver function into the container under the provided key. The
+   * resolver will be run each time the key is resolved resulting in new
+   * instances each resolution.
+   *
+   * @param  {string}            key
+   * @param  {ResolverInterface} resolver
+   * @return {this}
+   */
   public binding (key: string, resolver: ResolverInterface): this {
     this._bindings[key] = new Binding(null, resolver, true)
     return this
   }
 
+  /**
+   * Resolve a value from the container by its key.
+   *
+   * @param  {string} key
+   * @return {any}
+   */
   public make (key: string): any {
     if (this._bindings[key] !== undefined) {
       return this._bindings[key].resolve(this)
