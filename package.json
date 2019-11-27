@@ -4,7 +4,11 @@
   "description": "A simple reusable service container that can be used with Halligan JS or as a standalone library.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "nyc --reporter=text-summary mocha -r ts-node/register \"tests/setup.ts\" \"tests/**/*.test.ts\"",
+    "test:coverage": "nyc --reporter=text mocha -r ts-node/register \"tests/setup.ts\" \"tests/**/*.test.ts\"",
+    "test:report": "nyc --reporter=lcov mocha -r ts-node/register \"tests/setup.ts\" \"tests/**/*.test.ts\""
   },
   "repository": {
     "type": "git",
