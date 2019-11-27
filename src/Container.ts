@@ -106,4 +106,13 @@ export class Container implements ContainerInterface {
 
     return this
   }
+
+  /**
+   * Retrieve the value of the bindings property.
+   *
+   * @return {{ [key: string]: BindingInterface }}
+   */
+  getBindings (): { [key: string]: BindingInterface } {
+    return this._bindings
+  }
 }

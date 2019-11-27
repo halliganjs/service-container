@@ -1,3 +1,4 @@
+import { BindingInterface } from './BindingInterface'
 import { Provider } from '../types/Provider'
 import { Resolver } from '../types/Resolver'
 
@@ -59,4 +60,11 @@ export interface ContainerInterface {
    * @return {this}
    */
   reset (hard: boolean): this
+
+  /**
+   * Retrieve the value of the bindings property.
+   *
+   * @return {{ [key: string]: BindingInterface }}
+   */
+  getBindings (): { [key: string]: BindingInterface }
 }
