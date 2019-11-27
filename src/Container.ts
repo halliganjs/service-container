@@ -7,12 +7,12 @@ import { ResolverInterface } from './interfaces/Resolver'
 
 export class Container implements ContainerInterface {
   /**
-   * @prop {{ [key: string]: BindingInterface }} _bindings
+   * @var {{ [key: string]: BindingInterface }} _bindings
    */
   protected _bindings: { [key: string]: BindingInterface } = {}
 
   /**
-   * @prop {Array<ProviderInterface>}
+   * @var {Array<ProviderInterface>} _providers
    */
   protected _providers: Array<ProviderInterface> = []
 
