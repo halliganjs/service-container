@@ -1,9 +1,9 @@
 import { Binding } from './Binding'
-import { BindingInterface } from './interfaces/Binding'
+import { BindingInterface } from './interfaces/BindingInterface'
 import { BindingResolutionError } from './errors/BindingResolutionError'
-import { ContainerInterface } from './interfaces/Container'
-import { ProviderInterface } from './interfaces/Provider'
-import { ResolverInterface } from './interfaces/Resolver'
+import { ContainerInterface } from './interfaces/ContainerInterface'
+import { Provider } from './types/Provider'
+import { Resolver } from './types/Resolver'
 
 export class Container implements ContainerInterface {
   /**
@@ -12,9 +12,9 @@ export class Container implements ContainerInterface {
   protected _bindings: { [key: string]: BindingInterface } = {}
 
   /**
-   * @var {Array<ProviderInterface>} _providers
+   * @var {Array<Provider>} _providers
    */
-  protected _providers: Array<ProviderInterface> = []
+  protected _providers: Array<Provider> = []
 
   /**
    * Bind a single instance or value into the container under the provided key.
@@ -33,11 +33,11 @@ export class Container implements ContainerInterface {
    * resolver will be run once and the resulting value will be returned for all
    * subsequent resolutions.
    *
-   * @param  {string}            key
-   * @param  {ResolverInterface} resolver
+   * @param  {string}   key
+   * @param  {Resolver} resolver
    * @return {this}
    */
-  public singleton (key: string, resolver: ResolverInterface): this {
+  public singleton (key: string, resolver: Resolver): this {
     this._bindings[key] = new Binding(null, resolver)
     return this
   }
@@ -47,11 +47,11 @@ export class Container implements ContainerInterface {
    * resolver will be run each time the key is resolved resulting in new
    * instances each resolution.
    *
-   * @param  {string}            key
-   * @param  {ResolverInterface} resolver
+   * @param  {string}   key
+   * @param  {Resolver} resolver
    * @return {this}
    */
-  public binding (key: string, resolver: ResolverInterface): this {
+  public binding (key: string, resolver: Resolver): this {
     this._bindings[key] = new Binding(null, resolver, true)
     return this
   }
@@ -74,10 +74,10 @@ export class Container implements ContainerInterface {
    * Add a service provider into the container to register one or many bindings
    * as a unit. Provider functions are stored for soft resets.
    *
-   * @param  {ProviderInterface} provider
+   * @param  {Provider} provider
    * @return {this}
    */
-  public provider (provider: ProviderInterface): this {
+  public provider (provider: Provider): this {
     // Run the provider immediately
     provider(this)
 

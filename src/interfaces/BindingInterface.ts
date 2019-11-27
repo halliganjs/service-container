@@ -1,13 +1,13 @@
-import { ContainerInterface } from './Container'
-import { ResolverInterface } from './Resolver'
+import { ContainerInterface } from './ContainerInterface'
+import { Resolver } from '../types/Resolver'
 
 export interface BindingInterface {
   /**
    * Retrieve the value of the resolver property.
    *
-   * @return {ResolverInterface}
+   * @return {Resolver}
    */
-  getResolver (): ResolverInterface|null
+  getResolver (): Resolver|null
 
   /**
    * Retrieve the value of the value property.

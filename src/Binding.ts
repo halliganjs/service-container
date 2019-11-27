@@ -1,6 +1,6 @@
-import { BindingInterface } from './interfaces/Binding'
-import { ContainerInterface } from './interfaces/Container'
-import { ResolverInterface } from './interfaces/Resolver'
+import { BindingInterface } from './interfaces/BindingInterface'
+import { ContainerInterface } from './interfaces/ContainerInterface'
+import { Resolver } from './types/Resolver'
 
 export class Binding implements BindingInterface {
   /**
@@ -14,9 +14,9 @@ export class Binding implements BindingInterface {
   protected _isFactory: boolean = false
 
   /**
-   * @var {ResolverInterface|null} _resolver
+   * @var {Resolver|null} _resolver
    */
-  protected _resolver: ResolverInterface|null = null
+  protected _resolver: Resolver|null = null
 
   /**
    * @var {any} _value
@@ -26,13 +26,13 @@ export class Binding implements BindingInterface {
   /**
    * Create a new instance of Binding.
    *
-   * @param {any                    = null}  value
-   * @param {ResolverInterface|null = null}  resolver
-   * @param {boolean                = false} isFactory
+   * @param {any           = null}  value
+   * @param {Resolver|null = null}  resolver
+   * @param {boolean       = false} isFactory
    */
   public constructor (
     value: any = null,
-    resolver: ResolverInterface|null = null,
+    resolver: Resolver|null = null,
     isFactory: boolean = false
   ) {
     this._value = value
@@ -43,9 +43,9 @@ export class Binding implements BindingInterface {
   /**
    * Retrieve the value of the resolver property.
    *
-   * @return {ResolverInterface}
+   * @return {Resolver}
    */
-  public getResolver (): ResolverInterface|null {
+  public getResolver (): Resolver|null {
     return this._resolver
   }
 
