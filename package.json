@@ -1,0 +1,30 @@
+{
+  "name": "@halliganjs/service-container",
+  "version": "0.0.1",
+  "description": "A simple reusable service container that can be used with Halligan JS or as a standalone library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halliganjs/service-container.git"
+  },
+  "author": "Jarret Byrne <jarret@solvomedia.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/halliganjs/service-container/issues"
+  },
+  "homepage": "https://github.com/halliganjs/service-container#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint": "^6.7.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "typescript": "^3.7.2"
+  }
+}
