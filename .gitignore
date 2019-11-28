@@ -64,4 +64,4 @@ typings/
 *.sublime*
 
 # Compiled distribution files
-dist/
+lib/
