@@ -18,10 +18,10 @@ The Service Container is registered on NPM and can be installed with both `npm` 
 
 ```sh
 # Install with NPM
-$ npm i @halligan/service-container
+$ npm i @halliganjs/service-container
 
 # Install with yarn
-$ yarn add @halligan/service-container
+$ yarn add @halliganjs/service-container
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ $ yarn add @halligan/service-container
 The Service Container is a class that needs to be instantiated. The resulting instance should be exported for use throughout your application as a singleton so that everything interacts with the same instance of the container.
 
 ```js
-const Container = require('@halligan/service-container')
+const Container = require('@halliganjs/service-container')
 
 const container = new Container()
 
@@ -62,8 +62,8 @@ container.singleton('network', container => {
 
 // binding() is great for when you always need a fresh instance of a value
 const UserModel = require('./models/User')
-container.binding('userModel', container => {
-  return new User()
+container.binding('userModel', () => {
+  return new UserModel()
 })
 ```
 
