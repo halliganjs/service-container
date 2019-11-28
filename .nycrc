@@ -12,7 +12,5 @@
   "sourceMap": true,
   "instrument": true,
   "check-coverage": false,
-  "cache": true,
-  "report-dir": "coverage",
-  "temp-dir": "coverage/tmp"
+  "cache": true
 }
