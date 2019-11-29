@@ -12,9 +12,8 @@
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
     "test": "mocha -r ts-node/register \"tests/setup.ts\" \"tests/**/*.test.ts\"",
-    "test:ci": "nyc --reporter=lcovonly --reporter=text npm run test",
-    "test:html": "nyc --reporter=html npm run test",
-    "test:lcov": "nyc --reporter=lcovonly npm run test",
+    "test:html": "nyc --reporter=html --reporter=text npm run test",
+    "test:lcov": "nyc --reporter=lcovonly --reporter=text npm run test",
     "test:summary": "nyc --reporter=text-summary npm run test",
     "test:text": "nyc --reporter=text npm run test"
   },
