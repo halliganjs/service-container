@@ -87,6 +87,27 @@ export class Binding implements BindingInterface {
   }
 
   /**
+   * Determine if the binding is an instance that should resolve to the
+   * binding's value every time the binding is resolved.
+   *
+   * @return {boolean}
+   */
+  public isInstance (): boolean {
+    return this.isFactory() === false && this.hasResolver() === false
+  }
+
+  /**
+   * Determine if the binding is a singleton factory that should run its
+   * resolver exactly once and then return the same resulting instance value
+   * every time the binding is resolved.
+   *
+   * @return {boolean}
+   */
+  public isSingleton (): boolean {
+    return this.isFactory() === false && this.hasResolver() === true
+  }
+
+  /**
    * Resolve and return the value of the binding.
    *
    * @param  {ContainerInterface} container

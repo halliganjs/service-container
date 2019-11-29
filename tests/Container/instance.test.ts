@@ -10,6 +10,7 @@ describe('Container: instance()', function () {
     container.instance('testing', value)
 
     this.assert.property(container.getBindings(), 'testing')
+    this.assert.isTrue(container.getBindings().testing.isInstance())
     this.assert.equal(container.getBindings().testing.getValue(), value)
   })
 
@@ -23,6 +24,7 @@ describe('Container: instance()', function () {
     container.instance('testing', secondValue)
 
     this.assert.property(container.getBindings(), 'testing')
+    this.assert.isTrue(container.getBindings().testing.isInstance())
     this.assert.equal(container.getBindings().testing.getValue(), secondValue)
   })
 })

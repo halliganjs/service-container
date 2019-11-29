@@ -115,4 +115,13 @@ export class Container implements ContainerInterface {
   getBindings (): { [key: string]: BindingInterface } {
     return this._bindings
   }
+
+  /**
+   * Retrieve the value of the providers property.
+   *
+   * @return {Array<Provider>}
+   */
+  getProviders (): Array<Provider> {
+    return this._providers
+  }
 }
