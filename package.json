@@ -12,9 +12,8 @@
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
     "test": "mocha -r ts-node/register \"tests/setup.ts\" \"tests/**/*.test.ts\"",
-    "test:ci": "nyc --reporter=lcovonly --reporter=text npm run test",
-    "test:html": "nyc --reporter=html npm run test",
-    "test:lcov": "nyc --reporter=lcovonly npm run test",
+    "test:html": "nyc --reporter=html --reporter=text npm run test",
+    "test:lcov": "nyc --reporter=lcovonly --reporter=text npm run test",
     "test:summary": "nyc --reporter=text-summary npm run test",
     "test:text": "nyc --reporter=text npm run test"
   },
@@ -31,6 +30,7 @@
   "devDependencies": {
     "@types/chai": "^4.2.5",
     "@types/mocha": "^5.2.7",
+    "@types/sinon": "^7.5.1",
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
     "chai": "^4.2.0",
@@ -43,6 +43,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
+    "sinon": "^7.5.0",
     "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
   }

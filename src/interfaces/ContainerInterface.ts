@@ -67,4 +67,11 @@ export interface ContainerInterface {
    * @return {{ [key: string]: BindingInterface }}
    */
   getBindings (): { [key: string]: BindingInterface }
+
+  /**
+   * Retrieve the value of the providers property.
+   *
+   * @return {Array<Provider>}
+   */
+  getProviders (): Array<Provider>
 }

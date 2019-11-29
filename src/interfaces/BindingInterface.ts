@@ -39,6 +39,23 @@ export interface BindingInterface {
   isFactory (): boolean
 
   /**
+   * Determine if the binding is an instance that should resolve to the
+   * binding's value every time the binding is resolved.
+   *
+   * @return {boolean}
+   */
+  isInstance (): boolean
+
+  /**
+   * Determine if the binding is a singleton factory that should run its
+   * resolver exactly once and then return the same resulting instance value
+   * every time the binding is resolved.
+   *
+   * @return {boolean}
+   */
+  isSingleton (): boolean
+
+  /**
    * Resolve and return the value of the binding.
    *
    * @param  {ContainerInterface} container

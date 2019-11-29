@@ -8,5 +8,5 @@ install:
 
 script:
   - npm run lint
-  - npm run test:ci
+  - npm run test:lcov
   - npm run coveralls
