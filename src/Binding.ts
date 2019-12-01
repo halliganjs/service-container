@@ -93,7 +93,7 @@ export class Binding implements BindingInterface {
    * @return {boolean}
    */
   public isInstance (): boolean {
-    return this.isFactory() === false && this.hasResolver() === false
+    return this.hasResolver() === false
   }
 
   /**
@@ -104,7 +104,7 @@ export class Binding implements BindingInterface {
    * @return {boolean}
    */
   public isSingleton (): boolean {
-    return this.isFactory() === false && this.hasResolver() === true
+    return this.hasResolver() === true && this.isFactory() === false
   }
 
   /**
@@ -134,7 +134,7 @@ export class Binding implements BindingInterface {
    * @param  {boolean} hasResolved
    * @return {this}
    */
-  protected setHasResolved (hasResolved: boolean): this {
+  public setHasResolved (hasResolved: boolean): this {
     this._hasResolved = hasResolved
     return this
   }
@@ -145,7 +145,7 @@ export class Binding implements BindingInterface {
    * @param  {any}  value
    * @return {this}
    */
-  protected setValue (value: any): this {
+  public setValue (value: any): this {
     this._value = value
     return this
   }

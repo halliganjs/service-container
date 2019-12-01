@@ -62,4 +62,20 @@ export interface BindingInterface {
    * @return {any}
    */
   resolve (container: ContainerInterface): any
+
+  /**
+   * Set the value of the hasResolved property.
+   *
+   * @param  {boolean} hasResolved
+   * @return {this}
+   */
+  setHasResolved (hasResolved: boolean): this
+
+  /**
+   * Set the value of the value property.
+   *
+   * @param  {any}  value
+   * @return {this}
+   */
+  setValue (value: any): this
 }
