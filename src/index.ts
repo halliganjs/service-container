@@ -1,9 +1,14 @@
-import { Binding } from './Binding'
-import { BindingResolutionError } from './errors/BindingResolutionError'
-import { Container } from './Container'
+// Classes
+export { Binding } from './Binding'
+export { Container } from './Container'
 
-export {
-  Binding,
-  BindingResolutionError,
-  Container
-}
+// Errors
+export { BindingResolutionError } from './errors/BindingResolutionError'
+
+// Interfaces
+export { BindingInterface } from './interfaces/BindingInterface'
+export { ContainerInterface } from './interfaces/ContainerInterface'
+
+// Types
+export { Provider } from './types/Provider'
+export { Resolver } from './types/Resolver'
