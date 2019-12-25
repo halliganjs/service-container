@@ -1,4 +1,4 @@
-import { Binding } from '../../src/Binding'
+import { Binding } from '../../src/bindings/Binding'
 import { Container } from '../../src/Container'
 
 describe('Container: getBindings()', function () {

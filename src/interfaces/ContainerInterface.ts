@@ -1,4 +1,4 @@
-import { BindingInterface } from './BindingInterface'
+import { BindingInterface } from './bindings/BindingInterface'
 import { Provider } from '../types/Provider'
 import { Resolver } from '../types/Resolver'
 
