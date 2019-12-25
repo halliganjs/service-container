@@ -1,9 +1,11 @@
-import { Binding } from './Binding'
-import { BindingInterface } from './interfaces/BindingInterface'
+import { BindingInterface } from './interfaces/bindings/BindingInterface'
 import { BindingResolutionError } from './errors/BindingResolutionError'
 import { ContainerInterface } from './interfaces/ContainerInterface'
+import { Factory } from './bindings/Factory'
+import { Instance } from './bindings/Instance'
 import { Provider } from './types/Provider'
 import { Resolver } from './types/Resolver'
+import { Singleton } from './bindings/Singleton'
 
 export class Container implements ContainerInterface {
   /**
@@ -24,7 +26,7 @@ export class Container implements ContainerInterface {
    * @return {this}
    */
   public instance (key: string, value: any): this {
-    this._bindings[key] = new Binding(value)
+    this._bindings[key] = new Instance(value)
     return this
   }
 
@@ -38,7 +40,7 @@ export class Container implements ContainerInterface {
    * @return {this}
    */
   public singleton (key: string, resolver: Resolver): this {
-    this._bindings[key] = new Binding(null, resolver)
+    this._bindings[key] = new Singleton(resolver)
     return this
   }
 
@@ -52,7 +54,7 @@ export class Container implements ContainerInterface {
    * @return {this}
    */
   public binding (key: string, resolver: Resolver): this {
-    this._bindings[key] = new Binding(null, resolver, true)
+    this._bindings[key] = new Factory(resolver)
     return this
   }
 

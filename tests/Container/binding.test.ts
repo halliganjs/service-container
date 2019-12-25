@@ -1,4 +1,5 @@
 import { Container } from '../../src/Container'
+import { Factory } from '../../src/bindings/Factory'
 
 describe('Container: binding()', function () {
   it('should add the binding to the collection of bindings', function () {
@@ -10,8 +11,7 @@ describe('Container: binding()', function () {
     container.binding('testing', value)
 
     this.assert.property(container.getBindings(), 'testing')
-    this.assert.isTrue(container.getBindings().testing.isFactory())
-    this.assert.equal(container.getBindings().testing.getResolver(), value)
+    this.assert.instanceOf(container.getBindings().testing, Factory)
   })
 
   it('should replace the binding in the collection of bindings', function () {
@@ -21,10 +21,13 @@ describe('Container: binding()', function () {
     const container = new Container()
 
     container.binding('testing', firstValue)
+
+    const firstBinding = container.getBindings().testing
+
     container.binding('testing', secondValue)
 
     this.assert.property(container.getBindings(), 'testing')
-    this.assert.isTrue(container.getBindings().testing.isFactory())
-    this.assert.equal(container.getBindings().testing.getResolver(), secondValue)
+    this.assert.instanceOf(container.getBindings().testing, Factory)
+    this.assert.notEqual(container.getBindings().testing, firstBinding)
   })
 })
