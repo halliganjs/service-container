@@ -31,7 +31,7 @@ $ yarn add @halliganjs/service-container
 The Service Container is a class that needs to be instantiated. The resulting instance should be exported for use throughout your application as a singleton so that everything interacts with the same instance of the container.
 
 ```js
-const Container = require('@halliganjs/service-container')
+const { Container } = require('@halliganjs/service-container')
 
 const container = new Container()
 
