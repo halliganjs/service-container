@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Bumped version of nested dependency `acorn` to 7.1.1 (Security patch)
+- Bumped version of nested dependency `minimist` to 1.2.5 (Security patch)
 
 ## [0.2.0]
 ### Added
