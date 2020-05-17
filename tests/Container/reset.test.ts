@@ -9,7 +9,7 @@ describe('Container: reset()', function () {
 
     container.reset()
 
-    this.assert.deepEqual(container.getBindings(), {})
+    this.assert.equal(container.getBindings().size, 0)
   })
 
   it('should rerun the providers if the reset is soft', function () {
@@ -40,7 +40,7 @@ describe('Container: reset()', function () {
 
     container.reset(true)
 
-    this.assert.deepEqual(container.getBindings(), {})
+    this.assert.equal(container.getBindings().size, 0)
     this.assert.deepEqual(container.getProviders(), [])
   })
 
