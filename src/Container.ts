@@ -1,4 +1,5 @@
-import { BindingInterface } from './interfaces/bindings/BindingInterface'
+import { BindingMap } from './BindingMap'
+import { BindingMapInterface } from './interfaces/BindingMapInterface'
 import { BindingResolutionError } from './errors/BindingResolutionError'
 import { ContainerInterface } from './interfaces/ContainerInterface'
 import { Factory } from './bindings/Factory'
@@ -9,9 +10,9 @@ import { Singleton } from './bindings/Singleton'
 
 export class Container implements ContainerInterface {
   /**
-   * @var {{ [key: string]: BindingInterface }} _bindings
+   * @var {BindingMapInterface} _bindings
    */
-  protected _bindings: { [key: string]: BindingInterface } = {}
+  protected _bindings: BindingMapInterface = new BindingMap()
 
   /**
    * @var {Array<Provider>} _providers
@@ -21,12 +22,12 @@ export class Container implements ContainerInterface {
   /**
    * Bind a single instance or value into the container under the provided key.
    *
-   * @param  {string} key
-   * @param  {any}    value
+   * @param  {any} key
+   * @param  {any} value
    * @return {this}
    */
-  public instance (key: string, value: any): this {
-    this._bindings[key] = new Instance(value)
+  public instance (key: any, value: any): this {
+    this._bindings.set(key, new Instance(value))
     return this
   }
 
@@ -35,12 +36,12 @@ export class Container implements ContainerInterface {
    * resolver will be run once and the resulting value will be returned for all
    * subsequent resolutions.
    *
-   * @param  {string}   key
+   * @param  {any}      key
    * @param  {Resolver} resolver
    * @return {this}
    */
-  public singleton (key: string, resolver: Resolver): this {
-    this._bindings[key] = new Singleton(resolver)
+  public singleton (key: any, resolver: Resolver): this {
+    this._bindings.set(key, new Singleton(resolver))
     return this
   }
 
@@ -49,24 +50,24 @@ export class Container implements ContainerInterface {
    * resolver will be run each time the key is resolved resulting in new
    * instances each resolution.
    *
-   * @param  {string}   key
+   * @param  {any}      key
    * @param  {Resolver} resolver
    * @return {this}
    */
-  public binding (key: string, resolver: Resolver): this {
-    this._bindings[key] = new Factory(resolver)
+  public binding (key: any, resolver: Resolver): this {
+    this._bindings.set(key, new Factory(resolver))
     return this
   }
 
   /**
    * Resolve a value from the container by its key.
    *
-   * @param  {string} key
+   * @param  {any} key
    * @return {any}
    */
-  public make (key: string): any {
-    if (this._bindings[key] !== undefined) {
-      return this._bindings[key].resolve(this)
+  public make (key: any): any {
+    if (this._bindings.has(key)) {
+      return this._bindings.get(key)!.resolve(this)
     }
 
     throw new BindingResolutionError(key)
@@ -98,7 +99,7 @@ export class Container implements ContainerInterface {
    * @return {this}
    */
   public reset (hard: boolean = false): this {
-    this._bindings = {}
+    this._bindings.clear()
 
     if (hard) {
       this._providers = []
@@ -112,9 +113,9 @@ export class Container implements ContainerInterface {
   /**
    * Retrieve the value of the bindings property.
    *
-   * @return {{ [key: string]: BindingInterface }}
+   * @return {BindingMapInterface}
    */
-  getBindings (): { [key: string]: BindingInterface } {
+  getBindings (): BindingMapInterface {
     return this._bindings
   }
 
