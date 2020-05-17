@@ -9,9 +9,9 @@ describe('Container: getBindings()', function () {
 
     container.instance('testing', value)
 
-    this.assert.isObject(container.getBindings())
-    this.assert.property(container.getBindings(), 'testing')
-    this.assert.instanceOf(container.getBindings().testing, Binding)
-    this.assert.equal(container.getBindings().testing.getValue(), value)
+    this.assert.instanceOf(container.getBindings(), Map)
+    this.assert.hasAnyKeys(container.getBindings(), ['testing'])
+    this.assert.instanceOf(container.getBindings().get('testing'), Binding)
+    this.assert.equal(container.getBindings().get('testing')!.getValue(), value)
   })
 })

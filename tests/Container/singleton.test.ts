@@ -10,8 +10,8 @@ describe('Container: singleton()', function () {
 
     container.singleton('testing', value)
 
-    this.assert.property(container.getBindings(), 'testing')
-    this.assert.instanceOf(container.getBindings().testing, Singleton)
+    this.assert.hasAnyKeys(container.getBindings(), ['testing'])
+    this.assert.instanceOf(container.getBindings().get('testing'), Singleton)
   })
 
   it('should replace the binding in the collection of bindings', function () {
@@ -22,12 +22,12 @@ describe('Container: singleton()', function () {
 
     container.singleton('testing', firstValue)
 
-    const firstBinding = container.getBindings().testing
+    const firstBinding = container.getBindings().get('testing')
 
     container.singleton('testing', secondValue)
 
-    this.assert.property(container.getBindings(), 'testing')
-    this.assert.instanceOf(container.getBindings().testing, Singleton)
-    this.assert.notEqual(container.getBindings().testing, firstBinding)
+    this.assert.hasAnyKeys(container.getBindings(), ['testing'])
+    this.assert.instanceOf(container.getBindings().get('testing'), Singleton)
+    this.assert.notEqual(container.getBindings().get('testing'), firstBinding)
   })
 })
