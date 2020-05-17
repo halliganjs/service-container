@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.com/halliganjs/service-container.svg?branch=master)](https://travis-ci.com/halliganjs/service-container)
 [![Coverage Status](https://coveralls.io/repos/github/halliganjs/service-container/badge.svg?branch=master)](https://coveralls.io/github/halliganjs/service-container?branch=master)
+![NPM](https://img.shields.io/npm/l/@halliganjs/service-container)
+![npm](https://img.shields.io/npm/v/@halliganjs/service-container)
+![npm](https://img.shields.io/npm/dm/@halliganjs/service-container)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@halliganjs/service-container)
 
 The Service Container provides a very simple centralized container that stores and resolves libraries, objects, and values to better organize code, manage dependencies, and enhance testability.
 
