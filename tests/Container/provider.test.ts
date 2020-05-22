@@ -12,16 +12,6 @@ describe('Container: provider()', function () {
     this.assert.calledWith(provider.firstCall, container)
   })
 
-  it('should store the provider', function () {
-    const provider = this.sinon.spy()
-
-    const container = new Container()
-
-    container.provider(provider)
-
-    this.assert.include(container.getProviders(), provider)
-  })
-
   it('should return the container', function () {
     const provider = this.sinon.spy()
 

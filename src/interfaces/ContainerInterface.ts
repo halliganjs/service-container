@@ -35,6 +35,49 @@ export interface ContainerInterface {
   binding (key: any, resolver: Resolver): this
 
   /**
+   * Bind a fake value into the container for the provided key. When the key is
+   * requested, the fake will be provided until reset() is called.
+   *
+   * @param  {any} key
+   * @param  {any} value
+   * @return {this}
+   */
+  fake (key: any, value: any): this
+
+  /**
+   * Alias method for fake().
+   *
+   * @param  {any} key
+   * @param  {any} value
+   * @return {this}
+   */
+  fakeInstance (key: any, value: any): this
+
+  /**
+   * Bind a fake resolver function into the container under the provided key.
+   * The resolver will be run once and the resulting value will be returned for
+   * all subsequent resolutions of the key until reset() is called and the
+   * original resolver will be used again.
+   *
+   * @param  {any}      key
+   * @param  {Resolver} resolver
+   * @return {this}
+   */
+  fakeSingleton (key: any, resolver: Resolver): this
+
+  /**
+   * Bind a fake resolver function into the container under the provided key.
+   * The resolver will be run each time the key is resolved resulting in new
+   * instances each resolution of the key until reset() is called and the
+   * original resolver will be used again.
+   *
+   * @param  {any}      key
+   * @param  {Resolver} resolver
+   * @return {this}
+   */
+  fakeBinding (key: any, resolver: Resolver): this
+
+  /**
    * Resolve a value from the container by its key.
    *
    * @param  {any} key
@@ -44,7 +87,7 @@ export interface ContainerInterface {
 
   /**
    * Add a service provider into the container to register one or many bindings
-   * as a unit. Provider functions are stored for soft resets.
+   * as a unit.
    *
    * @param  {Provider} provider
    * @return {this}
@@ -52,9 +95,9 @@ export interface ContainerInterface {
   provider (provider: Provider): this
 
   /**
-   * Reset the container so that existing bindings are removed and stored
-   * providers are re-run. If a hard request is run, the both the bindings and
-   * providers will be emptied.
+   * Reset the container so that all fake bindings are removed and all original
+   * bindings will be used when requested. If a hard request is run, then both
+   * the fakes and the bindings will be cleared.
    *
    * @param  {boolean} hard
    * @return {this}
@@ -69,9 +112,9 @@ export interface ContainerInterface {
   getBindings (): BindingMapInterface
 
   /**
-   * Retrieve the value of the providers property.
+   * Retrieve the value of the fakes property.
    *
-   * @return {Array<Provider>}
+   * @return {BindingMapInterface}
    */
-  getProviders (): Array<Provider>
+  getFakes (): BindingMapInterface
 }
