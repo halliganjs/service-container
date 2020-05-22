@@ -16,6 +16,21 @@ Benefits:
 - Defers dependency resolution to mitigate circular references
 - Allows for easy mocking during unit testing
 
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+    * [Creating the Container](#creating-the-container)
+    * [Registering Values](#registering-values)
+        * [instance(key: any, value: any)](#instancekey-any-value-any)
+        * [singleton(key: any, value: (container: ContainerInterface) =&gt; any)](#singletonkey-any-value-container-containerinterface--any)
+        * [binding(key: any, value: (container: ContainerInterface) =&gt; any)](#bindingkey-any-value-container-containerinterface--any)
+    * [Retrieving Values](#retrieving-values)
+        * [make(key: any)](#makekey-any)
+    * [Binding Fakes and Mocks for Unit Testing](#binding-fakes-and-mocks-for-unit-testing)
+        * [fake(key: any, value: any)](#fakekey-any-value-any)
+        * [reset(hard: boolean)](#resethard-boolean)
+
 ## Installation
 
 The Service Container is registered on NPM and can be installed with both `npm` and `yarn`.
@@ -143,6 +158,81 @@ const network = container.make(Network)
 const user = container.make(User)
 ```
 
+### Binding Fakes and Mocks for Unit Testing
+
+One of the best features of a centralized service container is that it is really easy to fake, mock, and stub dependencies when unit testing. So long as your code retrieves values from the container, you can have the container provide your mock during testing and the code under test won't know the difference.
+
+The Service Container provides several methods that make this process easy and straightforward, from binding fake values to resetting the container so that each individual test starts with a full original container.
+
+#### `fake(key: any, value: any)`
+
+The `fake()` method behaves exactly like the `instance()` method, except the value provided to it is stored separately and tagged as a fake. When a fake value is registered and `make()` is called, the fake value will be provided until it is cleared with `reset()`.
+
+For unit testing, create your mock value and register it with `fake()`. When the code you intend to test runs and requests the value for the key you have faked, the fake value will be returned. When the test is finished executing, call `reset()` and the fake value will be removed so the next test will use the real value again.
+
+> `fakeInstance()` is an alias for `fake()` since instance binding is almost exclusively what unit testing will need. `fakeSingleton()` and `fakeBinding()` exist as well for the sake of completeness, with signatures that match their non-fake versions, but are not likely to be necessary.
+
+```js
+const container = require('./container')
+const moment = require('moment')
+
+describe('Test description', function () {
+  it('should use the fake moment', function () {
+    // Create the fake
+    const fakeMoment = {
+      normalizeUnits () {
+        return 'year'
+      }
+    }
+
+    // Register the fake
+    container.fake(moment, fakeMoment)
+
+    // Run your test
+    const result = myCode.doSomethingWithMoment()
+    assert.equal(result, 'year')
+
+    // Reset the container (see the reset() docs for better ways to do this)
+    container.reset()
+  }
+}
+```
+
+#### `reset(hard: boolean)`
+
+If you are registering fakes in a unit test, odds are you don't want the fakes from one test to bleed into other tests. The `reset()` method allows you to eliminate all the fakes currently registered so that only actual bindings remain. By calling `reset()` between tests, you are guaranteed that each test only fakes what it needs and relies on actual bindings for everything else, regardless of what other tests do.
+
+While you could call `reset()` at the end of every test, all the major test runners provide some means of running functions before each test or after each test. It is highly recommend that you reset your container in a global before-each or after-each function so that it is automatic and not reliant on developers remembering to redundantly call `reset()` in all of their tests.
+
+> If you wish for the container to be cleaned of _ALL_ of its bindings, both fakes and actual ones, then pass `true` as the first argument to `reset()` for a hard reset that eliminates all bindings.
+
+```js
+const container = require('./container')
+const moment = require('moment')
+
+describe('Test description', function () {
+  beforeEach(function () {
+    // Ensure that the container is always clean before a test runs
+    container.reset()
+  })
+  
+  it('should use the fake moment', function () {
+    // Create the fake
+    const fakeMoment = {
+      normalizeUnits () {
+        return 'year'
+      }
+    }
+
+    // Register the fake
+    container.fake(moment, fakeMoment)
+
+    // Run your test
+    const result = myCode.doSomethingWithMoment()
+    assert.equal(result, 'year')
+  }
+})
+```
 ---
 
 Inspired by the [Laravel Service Container](https://github.com/illuminate/container).
