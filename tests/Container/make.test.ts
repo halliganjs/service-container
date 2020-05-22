@@ -21,4 +21,16 @@ describe('Container: make()', function () {
       'Failed to resolve a binding with the key \'testing\' from the service container.'
     )
   })
+
+  it('should resolve a fake binding if it exists before the real binding', function () {
+    const container = new Container()
+
+    const realValue = {}
+    const fakeValue = {}
+
+    container.instance('testing', realValue)
+    container.fake('testing', fakeValue)
+
+    this.assert.equal(container.make('testing'), fakeValue)
+  })
 })

@@ -1,47 +1,28 @@
 import { Container } from '../../src/Container'
-import { ContainerInterface } from '../../src/interfaces/ContainerInterface'
 
 describe('Container: reset()', function () {
-  it('should reset the bindings', function () {
+  it('should reset the fake bindings', function () {
     const container = new Container()
 
     container.instance('testing', {})
+    container.fake('testing', {})
 
     container.reset()
 
-    this.assert.equal(container.getBindings().size, 0)
+    this.assert.equal(container.getBindings().size, 1)
+    this.assert.equal(container.getFakes().size, 0)
   })
 
-  it('should rerun the providers if the reset is soft', function () {
+  it('should reset both the fake and actual bindings if the reset is hard', function () {
     const container = new Container()
 
-    const firstValue = {}
-    const secondValue = {}
-
-    const provider = (container: ContainerInterface) => container.instance('testing', firstValue)
-
-    container.provider(provider)
-
-    container.instance('testing', secondValue)
-
-    container.reset()
-
-    this.assert.equal(container.make('testing'), firstValue)
-  })
-
-  it('should rerun the providers if the reset is hard', function () {
-    const container = new Container()
-
-    const provider = (container: ContainerInterface) => container.instance('one', {})
-
-    container.provider(provider)
-
-    container.instance('two', {})
+    container.instance('testing', {})
+    container.fake('testing', {})
 
     container.reset(true)
 
     this.assert.equal(container.getBindings().size, 0)
-    this.assert.deepEqual(container.getProviders(), [])
+    this.assert.equal(container.getFakes().size, 0)
   })
 
   it('should return the container', function () {
