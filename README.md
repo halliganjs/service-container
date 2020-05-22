@@ -202,7 +202,7 @@ describe('Test description', function () {
 
 If you are registering fakes in a unit test, odds are you don't want the fakes from one test to bleed into other tests. The `reset()` method allows you to eliminate all the fakes currently registered so that only actual bindings remain. By calling `reset()` between tests, you are guaranteed that each test only fakes what it needs and relies on actual bindings for everything else, regardless of what other tests do.
 
-While you could call `reset()` at the end of every test, all the major test runners provide some means of running functions before each test or after each test. It is highly recommend that you reset your container in a global before-each or after-each function so that it is automatic and not reliant on developers remembering to redundantly call `reset()` in all of their tests.
+While you could call `reset()` at the end of every test, all the major test runners provide some means of running functions before each test or after each test. It is highly recommended that you reset your container in a global before-each or after-each function so that it is automatic and not reliant on developers remembering to redundantly call `reset()` in all of their tests.
 
 > If you wish for the container to be cleaned of _ALL_ of its bindings, both fakes and actual ones, then pass `true` as the first argument to `reset()` for a hard reset that eliminates all bindings.
 
