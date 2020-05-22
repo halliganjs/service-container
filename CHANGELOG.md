@@ -5,6 +5,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `fake()` method to `Container` class
+- `fakeInstance()` method to the `Container` class
+- `fakeSingleton()` method to the `Container` class
+- `fakeBinding()` method to the `Container` class
+- `getFakes()` method to the `Container` class
+
+### Changed
+- `make()` method in `Container` class - now returns a fake if found before a real binding
+- `provider()` method in `Container` class - no longer stores providers
+- `reset()` method in `Container` class - now clears all fakes by default, or all fakes and all real bindings if `hard` is passed as `true`
+
+### Removed
+- `getProviders()` method from `Container` class
 
 ## [0.3.0]
 ### Added
