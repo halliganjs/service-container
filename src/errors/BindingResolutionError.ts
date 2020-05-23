@@ -1,4 +1,6 @@
-export class BindingResolutionError extends Error {
+import { BindingResolutionErrorInterface } from '../interfaces/errors/BindingResolutionErrorInterface'
+
+export class BindingResolutionError extends Error implements BindingResolutionErrorInterface {
   /**
    * Create a new instance of BindingResolutionError.
    *
