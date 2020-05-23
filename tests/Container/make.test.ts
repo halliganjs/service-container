@@ -18,7 +18,7 @@ describe('Container: make()', function () {
     this.assert.throws(
       () => container.make('testing'),
       BindingResolutionError,
-      'Failed to resolve a binding with the key \'testing\' from the service container.'
+      'Failed to resolve a binding with a key of type string with a value of \'testing\' from the service container.'
     )
   })
 

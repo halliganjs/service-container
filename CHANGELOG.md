@@ -11,11 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `fakeSingleton()` method to the `Container` class
 - `fakeBinding()` method to the `Container` class
 - `getFakes()` method to the `Container` class
+- `BindingResolutionErrorInterface` interface for the `BindingResolutionError` class
 
 ### Changed
 - `make()` method in `Container` class - now returns a fake if found before a real binding
 - `provider()` method in `Container` class - no longer stores providers
 - `reset()` method in `Container` class - now clears all fakes by default, or all fakes and all real bindings if `hard` is passed as `true`
+- `BindingResolutionError` class - implements `BindingResolutionErrorInterface` and supports generating messages specific to the type of key that is provided
 
 ### Removed
 - `getProviders()` method from `Container` class
