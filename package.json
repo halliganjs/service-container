@@ -1,6 +1,6 @@
 {
   "name": "@halliganjs/service-container",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A simple reusable service container that can be used with Halligan JS or as a standalone library.",
   "files": [
     "/lib"
@@ -8,9 +8,11 @@
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
+    "build": "rm -r ./lib && tsc",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
+    "release": "npm run build && npm publish",
     "test": "mocha -r ts-node/register \"tests/setup.ts\" \"tests/**/*.test.ts\"",
     "test:html": "nyc --reporter=html --reporter=text npm run test",
     "test:lcov": "nyc --reporter=lcovonly --reporter=text npm run test",
