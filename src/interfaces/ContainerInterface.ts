@@ -1,4 +1,3 @@
-import { BindingMapInterface } from './BindingMapInterface'
 import { Provider } from '../types/Provider'
 import { Resolver } from '../types/Resolver'
 
