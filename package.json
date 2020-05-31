@@ -1,6 +1,6 @@
 {
   "name": "@halliganjs/service-container",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "A simple reusable service container that can be used with Halligan JS or as a standalone library.",
   "files": [
     "/lib"
