@@ -10,6 +10,10 @@ export class Factory extends ResolverBinding implements FactoryInterface {
    * @return {any}
    */
   public resolve (container: ContainerInterface): any {
+    if (this.hasResolved === false) {
+      this.hasResolved = true
+    }
+
     return this.resolver(container)
   }
 }

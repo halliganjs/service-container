@@ -4,9 +4,9 @@ import { ResolverBindingInterface } from '../interfaces/bindings/ResolverBinding
 
 export abstract class ResolverBinding extends Binding implements ResolverBindingInterface {
   /**
-   * @var {boolean} _hasResolved
+   * @var {boolean} hasResolved
    */
-  protected _hasResolved: boolean = false
+  public hasResolved: boolean = false
 
   /**
    * @var {Resolver|null} _resolver
@@ -31,25 +31,5 @@ export abstract class ResolverBinding extends Binding implements ResolverBinding
     super()
 
     this._resolver = resolver
-  }
-
-  /**
-   * Determine if the binding has been resolved at least once.
-   *
-   * @return {boolean}
-   */
-  public hasResolved (): boolean {
-    return this._hasResolved
-  }
-
-  /**
-   * Set the value of the hasResolved property.
-   *
-   * @param  {boolean} hasResolved
-   * @return {this}
-   */
-  public setHasResolved (hasResolved: boolean): this {
-    this._hasResolved = hasResolved
-    return this
   }
 }
