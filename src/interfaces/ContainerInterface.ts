@@ -1,4 +1,3 @@
-import { BindingMapInterface } from './BindingMapInterface'
 import { Provider } from '../types/Provider'
 import { Resolver } from '../types/Resolver'
 
@@ -103,18 +102,4 @@ export interface ContainerInterface {
    * @return {this}
    */
   reset (hard: boolean): this
-
-  /**
-   * Retrieve the value of the bindings property.
-   *
-   * @return {BindingMapInterface}
-   */
-  getBindings (): BindingMapInterface
-
-  /**
-   * Retrieve the value of the fakes property.
-   *
-   * @return {BindingMapInterface}
-   */
-  getFakes (): BindingMapInterface
 }

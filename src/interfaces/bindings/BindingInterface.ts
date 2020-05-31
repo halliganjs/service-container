@@ -2,19 +2,9 @@ import { ContainerInterface } from '../ContainerInterface'
 
 export interface BindingInterface {
   /**
-   * Retrieve the value of the value property.
-   *
-   * @return {any}
+   * @var {any} value
    */
-  getValue (): any
-
-  /**
-   * Set the value of the value property.
-   *
-   * @param  {any}  value
-   * @return {this}
-   */
-  setValue (value: any): this
+  value: any
 
   /**
    * Resolve and return the value of the binding.

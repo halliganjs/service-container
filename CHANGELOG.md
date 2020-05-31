@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Removed
+- `getBindings()` method from `Container` class
+- `getFakes()` method from `Container` class
+- `getValue()` method from `Binding` class
+- `setValue()` method from `Binding` class
+- `getResolver()` method from `ResolverBinding` class
+- `hasResolved()` method from `ResolverBinding` class
+- `setHasResolved()` method from `ResolverBinding` class
 
 ## [0.4.0]
 ### Added

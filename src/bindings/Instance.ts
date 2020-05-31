@@ -8,6 +8,6 @@ export class Instance extends Binding implements InstanceInterface {
    * @return {any}
    */
   public resolve (): any {
-    return this.getValue()
+    return this.value
   }
 }
