@@ -6,12 +6,12 @@ describe('Container: fakeBinding()', function () {
     const value = () => {}
     const container = new Container()
 
-    this.assert.notProperty(container.getFakes(), 'testing')
+    this.assert.notProperty(container.fakes, 'testing')
 
     container.fakeBinding('testing', value)
 
-    this.assert.hasAnyKeys(container.getFakes(), ['testing'])
-    this.assert.instanceOf(container.getFakes().get('testing'), Factory)
+    this.assert.hasAnyKeys(container.fakes, ['testing'])
+    this.assert.instanceOf(container.fakes.get('testing'), Factory)
   })
 
   it('should replace the fake binding in the collection of fake bindings', function () {
@@ -22,12 +22,12 @@ describe('Container: fakeBinding()', function () {
 
     container.fakeBinding('testing', firstValue)
 
-    const firstFake = container.getFakes().get('testing')
+    const firstFake = container.fakes.get('testing')
 
     container.fakeBinding('testing', secondValue)
 
-    this.assert.hasAnyKeys(container.getFakes(), ['testing'])
-    this.assert.instanceOf(container.getFakes().get('testing'), Factory)
-    this.assert.notEqual(container.getFakes().get('testing'), firstFake)
+    this.assert.hasAnyKeys(container.fakes, ['testing'])
+    this.assert.instanceOf(container.fakes.get('testing'), Factory)
+    this.assert.notEqual(container.fakes.get('testing'), firstFake)
   })
 })

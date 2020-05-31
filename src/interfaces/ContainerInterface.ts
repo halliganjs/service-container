@@ -103,11 +103,4 @@ export interface ContainerInterface {
    * @return {this}
    */
   reset (hard: boolean): this
-
-  /**
-   * Retrieve the value of the fakes property.
-   *
-   * @return {BindingMapInterface}
-   */
-  getFakes (): BindingMapInterface
 }

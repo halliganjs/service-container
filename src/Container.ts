@@ -29,6 +29,15 @@ export class Container implements ContainerInterface {
   }
 
   /**
+   * Retrieve the value of the fakes property.
+   *
+   * @return {BindingMapInterface}
+   */
+  public get fakes (): BindingMapInterface {
+    return this._fakes
+  }
+
+  /**
    * Bind a single instance or value into the container under the provided key.
    *
    * @param  {any} key
@@ -173,14 +182,5 @@ export class Container implements ContainerInterface {
     }
 
     return this
-  }
-
-  /**
-   * Retrieve the value of the fakes property.
-   *
-   * @return {BindingMapInterface}
-   */
-  public getFakes (): BindingMapInterface {
-    return this._fakes
   }
 }
