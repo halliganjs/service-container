@@ -11,7 +11,7 @@ export class Singleton extends ResolverBinding implements SingletonInterface {
    */
   public resolve (container: ContainerInterface): any {
     if (this.hasResolved() === false) {
-      this.value = this._resolver(container)
+      this.value = this.resolver(container)
       this.setHasResolved(true)
     }
 

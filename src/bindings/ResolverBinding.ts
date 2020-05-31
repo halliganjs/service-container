@@ -14,6 +14,15 @@ export abstract class ResolverBinding extends Binding implements ResolverBinding
   protected _resolver: Resolver
 
   /**
+   * Retrieve the value of the resolver property.
+   *
+   * @return {Resolver}
+   */
+  get resolver (): Resolver {
+    return this._resolver
+  }
+
+  /**
    * Create a new instance of ResolverBinding.
    *
    * @param {Resolver} resolver
@@ -22,15 +31,6 @@ export abstract class ResolverBinding extends Binding implements ResolverBinding
     super()
 
     this._resolver = resolver
-  }
-
-  /**
-   * Retrieve the value of the resolver property.
-   *
-   * @return {Resolver}
-   */
-  public getResolver (): Resolver {
-    return this._resolver
   }
 
   /**

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `getFakes()` method from `Container` class
 - `getValue()` method from `Binding` class
 - `setValue()` method from `Binding` class
+- `getResolver()` method from `ResolverBinding` class
 
 ## [0.4.0]
 ### Added

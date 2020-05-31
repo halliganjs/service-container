@@ -1,14 +1,6 @@
 import { BindingInterface } from './BindingInterface'
-import { Resolver } from '../../types/Resolver'
 
 export interface ResolverBindingInterface extends BindingInterface {
-  /**
-   * Retrieve the value of the resolver property.
-   *
-   * @return {Resolver}
-   */
-  getResolver (): Resolver
-
   /**
    * Determine if the binding has been resolved at least once.
    *
