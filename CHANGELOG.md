@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - `getBindings()` method from `Container` class
 - `getFakes()` method from `Container` class
+- `getValue()` method from `Binding` class
+- `setValue()` method from `Binding` class
 
 ## [0.4.0]
 ### Added

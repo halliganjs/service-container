@@ -11,10 +11,10 @@ export class Singleton extends ResolverBinding implements SingletonInterface {
    */
   public resolve (container: ContainerInterface): any {
     if (this.hasResolved() === false) {
-      this.setValue(this._resolver(container))
-        .setHasResolved(true)
+      this.value = this._resolver(container)
+      this.setHasResolved(true)
     }
 
-    return this.getValue()
+    return this.value
   }
 }
