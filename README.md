@@ -1,11 +1,14 @@
 # Halligan JS: Service Container
 
+![NPM](https://img.shields.io/npm/l/@halliganjs/service-container)
 [![Build Status](https://travis-ci.com/halliganjs/service-container.svg?branch=master)](https://travis-ci.com/halliganjs/service-container)
 [![Coverage Status](https://coveralls.io/repos/github/halliganjs/service-container/badge.svg?branch=master)](https://coveralls.io/github/halliganjs/service-container?branch=master)
-![NPM](https://img.shields.io/npm/l/@halliganjs/service-container)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/halliganjs/service-container.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/halliganjs/service-container/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/halliganjs/service-container.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/halliganjs/service-container/context:javascript)
 ![npm](https://img.shields.io/npm/v/@halliganjs/service-container)
 ![npm](https://img.shields.io/npm/dm/@halliganjs/service-container)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/@halliganjs/service-container)
+![Maintenance](https://img.shields.io/maintenance/yes/2020)
 
 The Service Container provides a very simple, centralized container that stores and resolves libraries, objects, and values to better organize code, manage dependencies, and enhance testability.
 
@@ -22,14 +25,17 @@ Benefits:
 * [Usage](#usage)
     * [Creating the Container](#creating-the-container)
     * [Registering Values](#registering-values)
-        * [instance(key: any, value: any)](#instancekey-any-value-any)
-        * [singleton(key: any, value: (container: ContainerInterface) =&gt; any)](#singletonkey-any-value-container-containerinterface--any)
-        * [binding(key: any, value: (container: ContainerInterface) =&gt; any)](#bindingkey-any-value-container-containerinterface--any)
+        * [`instance(key: any, value: any)`](#instancekey-any-value-any)
+        * [`singleton(key: any, value: (container: ContainerInterface) =&gt; any)`](#singletonkey-any-value-container-containerinterface--any)
+        * [`binding(key: any, value: (container: ContainerInterface) =&gt; any)`](#bindingkey-any-value-container-containerinterface--any)
     * [Retrieving Values](#retrieving-values)
-        * [make(key: any)](#makekey-any)
+        * [`make(key: any)`](#makekey-any)
     * [Binding Fakes and Mocks for Unit Testing](#binding-fakes-and-mocks-for-unit-testing)
-        * [fake(key: any, value: any)](#fakekey-any-value-any)
-        * [reset(hard: boolean)](#resethard-boolean)
+        * [`fake(key: any, value: any)`](#fakekey-any-value-any)
+        * [`reset(hard: boolean)`](#resethard-boolean)
+    * [Bundling Registrations with Providers](#bundling-registrations-with-providers)
+        * [Creating a `Provider`](#creating-a-provider)
+        * [Register Provider with `provider (provider: Provider)`](#register-provider-with-provider-provider-provider)
 
 ## Installation
 
@@ -194,7 +200,7 @@ describe('Test description', function () {
 
     // Reset the container (see the reset() docs for better ways to do this)
     container.reset()
-  }
+  })
 }
 ```
 
@@ -230,9 +236,63 @@ describe('Test description', function () {
     // Run your test
     const result = myCode.doSomethingWithMoment()
     assert.equal(result, 'year')
-  }
+  })
 })
 ```
+
+### Bundling Registrations with Providers
+
+While it's fairly easy to create a container and wire it up together all at once, it is not always the most organized way. Also, if you want to reuse libraries across projects, you will need to duplicate the registrations in every project that you use that library in.
+
+To make life easier, the container supports providers, which are just a way to bundle multiple registrations on a container into one callback. This allows you to organize multiple registrations for the same service, or the same category of services, into a single file that exports a `Provider` closure. When the closure is registered with the container, the container will extract all of the registrations automatically. This makes providers a great way to organize similar services together, or to bundle with a library you use across projects so you can just reference the bundled provider for consistent, DRY service registration.
+
+#### Creating a `Provider`
+
+A `Provider` is just a closure that accepts the container as its only parameter. Inside the closure you can run as many operations (such as `instance()`, `singleton()`, and `binding()`) as you like on the container. Once given to the container, the `Provider`'s registrations will all be run on the container itself.
+
+```js
+// in ./providers/dBProvider.js
+const DBConnection = require('./DBConnection')
+const ModelFactory = require('./ModelFactory')
+
+// This closure is the Provider, and registers two items into the container
+module.exports = function (container) {
+  container.singleton(DBConnection, function () {
+    return new DBConnection(
+      process.env.DB_HOST,
+      process.env.DB_USER,
+      process.env.DB_PASS
+    )
+  })
+  
+  container.binding(ModelFactory, function (container) {
+    return new ModelFactory(container.make(DBConnection))
+  })
+}
+```
+
+#### Register `Provider` with `provider (provider: Provider)`
+
+Once you have services organized into one or more providers, they just need to be registered with the container. This is done by calling `provider()` on the container instance and passing your provider. The container will take the provider and run it, registering each item defined within the provider.
+
+> Note: Unlike `instance()`, `singleton()`, and `binding()` registrations, providers are not stored or remembered by the container. Only the items that the provider registers by calling `instance()`, `singleton()`, and `binding()` are stored.
+
+```js
+//in ./container.js
+const Container = require('@halliganjs/service-container')
+const DBConnection = require('./DBConnection')
+const dbProvider = require('./providers/dBProvider.js')
+
+// Instantiate container instance
+const container = new Container()
+
+// Register the provider
+container.provider(dbProvider)
+
+// All the provider's registered items are now available in the container
+const dbConnection = container.make(DBConnection)
+```
+
 ---
 
 Inspired by the [Laravel Service Container](https://github.com/illuminate/container).
