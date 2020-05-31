@@ -9,8 +9,8 @@ describe('Container: reset()', function () {
 
     container.reset()
 
-    this.assert.equal(container.getBindings().size, 1)
     this.assert.equal(container.getFakes().size, 0)
+    this.assert.equal(container.bindings.size, 1)
   })
 
   it('should reset both the fake and actual bindings if the reset is hard', function () {
@@ -21,8 +21,8 @@ describe('Container: reset()', function () {
 
     container.reset(true)
 
-    this.assert.equal(container.getBindings().size, 0)
     this.assert.equal(container.getFakes().size, 0)
+    this.assert.equal(container.bindings.size, 0)
   })
 
   it('should return the container', function () {

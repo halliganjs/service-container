@@ -20,6 +20,15 @@ export class Container implements ContainerInterface {
   protected _fakes: BindingMapInterface = new BindingMap()
 
   /**
+   * Retrieve the value of the bindings property.
+   *
+   * @return {BindingMapInterface}
+   */
+  public get bindings (): BindingMapInterface {
+    return this._bindings
+  }
+
+  /**
    * Bind a single instance or value into the container under the provided key.
    *
    * @param  {any} key
@@ -164,15 +173,6 @@ export class Container implements ContainerInterface {
     }
 
     return this
-  }
-
-  /**
-   * Retrieve the value of the bindings property.
-   *
-   * @return {BindingMapInterface}
-   */
-  public getBindings (): BindingMapInterface {
-    return this._bindings
   }
 
   /**

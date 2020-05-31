@@ -6,12 +6,12 @@ describe('Container: instance()', function () {
     const value = {}
     const container = new Container()
 
-    this.assert.notProperty(container.getBindings(), 'testing')
+    this.assert.notProperty(container.bindings, 'testing')
 
     container.instance('testing', value)
 
-    this.assert.hasAnyKeys(container.getBindings(), ['testing'])
-    this.assert.instanceOf(container.getBindings().get('testing'), Instance)
+    this.assert.hasAnyKeys(container.bindings, ['testing'])
+    this.assert.instanceOf(container.bindings.get('testing'), Instance)
   })
 
   it('should replace the binding in the collection of bindings', function () {
@@ -22,12 +22,12 @@ describe('Container: instance()', function () {
 
     container.instance('testing', firstValue)
 
-    const firstInstance = container.getBindings().get('testing')
+    const firstInstance = container.bindings.get('testing')
 
     container.instance('testing', secondValue)
 
-    this.assert.hasAnyKeys(container.getBindings(), ['testing'])
-    this.assert.instanceOf(container.getBindings().get('testing'), Instance)
-    this.assert.notEqual(container.getBindings().get('testing'), firstInstance)
+    this.assert.hasAnyKeys(container.bindings, ['testing'])
+    this.assert.instanceOf(container.bindings.get('testing'), Instance)
+    this.assert.notEqual(container.bindings.get('testing'), firstInstance)
   })
 })

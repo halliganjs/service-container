@@ -6,12 +6,12 @@ describe('Container: singleton()', function () {
     const value = () => {}
     const container = new Container()
 
-    this.assert.notProperty(container.getBindings(), 'testing')
+    this.assert.notProperty(container.bindings, 'testing')
 
     container.singleton('testing', value)
 
-    this.assert.hasAnyKeys(container.getBindings(), ['testing'])
-    this.assert.instanceOf(container.getBindings().get('testing'), Singleton)
+    this.assert.hasAnyKeys(container.bindings, ['testing'])
+    this.assert.instanceOf(container.bindings.get('testing'), Singleton)
   })
 
   it('should replace the binding in the collection of bindings', function () {
@@ -22,12 +22,12 @@ describe('Container: singleton()', function () {
 
     container.singleton('testing', firstValue)
 
-    const firstBinding = container.getBindings().get('testing')
+    const firstBinding = container.bindings.get('testing')
 
     container.singleton('testing', secondValue)
 
-    this.assert.hasAnyKeys(container.getBindings(), ['testing'])
-    this.assert.instanceOf(container.getBindings().get('testing'), Singleton)
-    this.assert.notEqual(container.getBindings().get('testing'), firstBinding)
+    this.assert.hasAnyKeys(container.bindings, ['testing'])
+    this.assert.instanceOf(container.bindings.get('testing'), Singleton)
+    this.assert.notEqual(container.bindings.get('testing'), firstBinding)
   })
 })
