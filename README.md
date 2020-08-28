@@ -26,16 +26,17 @@ Benefits:
     * [Creating the Container](#creating-the-container)
     * [Registering Values](#registering-values)
         * [`instance(key: any, value: any)`](#instancekey-any-value-any)
-        * [`singleton(key: any, value: (container: ContainerInterface) =&gt; any)`](#singletonkey-any-value-container-containerinterface--any)
-        * [`binding(key: any, value: (container: ContainerInterface) =&gt; any)`](#bindingkey-any-value-container-containerinterface--any)
+        * [`singleton(key: any, value: (container: ContainerInterface) => any)`](#singletonkey-any-value-container-containerinterface--any)
+        * [`binding(key: any, value: (container: ContainerInterface) => any)`](#bindingkey-any-value-container-containerinterface--any)
     * [Retrieving Values](#retrieving-values)
         * [`make(key: any)`](#makekey-any)
+            * [Type-hinting Supprt [TypeScript Only]](#type-hinting-supprt-typescript-only)
     * [Binding Fakes and Mocks for Unit Testing](#binding-fakes-and-mocks-for-unit-testing)
         * [`fake(key: any, value: any)`](#fakekey-any-value-any)
         * [`reset(hard: boolean)`](#resethard-boolean)
     * [Bundling Registrations with Providers](#bundling-registrations-with-providers)
         * [Creating a `Provider`](#creating-a-provider)
-        * [Register Provider with `provider (provider: Provider)`](#register-provider-with-provider-provider-provider)
+        * [Register `Provider` with `provider (provider: Provider)`](#register-provider-with-provider-provider-provider)
 
 ## Installation
 
@@ -164,6 +165,20 @@ const network = container.make(Network)
 const user = container.make(User)
 ```
 
+##### Type-hinting Supprt [TypeScript Only]
+
+When calling the `make()` method inside a TypeScript environment, you may choose to provide a generic type that will be used as the return type of the `make()` method for type-hinting purposes. If you choose not to provide a generic type, then TypeScript will assume that the returned value has a type of any.
+
+```js
+// Default behavior - value has a type of any
+const value = container.make(MyClass)
+
+// Opt-in behavior - newValue has a type of MyClass
+const value = container.make<MyClass>(MyClass)
+```
+
+> Note: Be careful when defining the return type of the `make()` method. TypeScript does not check that the value returned is the correct type, it merely casts the type for type-hinting purposes.
+
 ### Binding Fakes and Mocks for Unit Testing
 
 One of the best features of a centralized service container is that it is really easy to fake, mock, and stub dependencies when unit testing. So long as your code retrieves values from the container, you can have the container provide your mock during testing and the code under test won't know the difference.
@@ -221,7 +236,7 @@ describe('Test description', function () {
     // Ensure that the container is always clean before a test runs
     container.reset()
   })
-  
+
   it('should use the fake moment', function () {
     // Create the fake
     const fakeMoment = {
@@ -264,7 +279,7 @@ module.exports = function (container) {
       process.env.DB_PASS
     )
   })
-  
+
   container.binding(ModelFactory, function (container) {
     return new ModelFactory(container.make(DBConnection))
   })
