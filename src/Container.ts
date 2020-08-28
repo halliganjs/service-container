@@ -137,7 +137,7 @@ export class Container implements ContainerInterface {
    * @param  {any} key
    * @return {any}
    */
-  public make (key: any): any {
+  public make <T = any> (key: any): T {
     // First check if there is a fake registered
     if (this._fakes.has(key)) {
       return this._fakes.get(key)!.resolve(this)

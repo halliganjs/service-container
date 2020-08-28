@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- `make()` method in `Container` class - now supports a generic type to be used as the return type for type-hinting. _[TypeScript only]_
 
 ## [1.0.0]
 ### Removed

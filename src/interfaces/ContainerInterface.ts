@@ -82,7 +82,7 @@ export interface ContainerInterface {
    * @param  {any} key
    * @return {any}
    */
-  make (key: any): any
+  make <T = any> (key: any): T
 
   /**
    * Add a service provider into the container to register one or many bindings
