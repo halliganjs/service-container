@@ -1,8 +1,8 @@
 # Halligan JS: Service Container
 
 ![NPM](https://img.shields.io/npm/l/@halliganjs/service-container)
-[![Build Status](https://travis-ci.com/halliganjs/service-container.svg?branch=master)](https://travis-ci.com/halliganjs/service-container)
-[![Coverage Status](https://coveralls.io/repos/github/halliganjs/service-container/badge.svg?branch=master)](https://coveralls.io/github/halliganjs/service-container?branch=master)
+[![Build Status](https://travis-ci.com/halliganjs/service-container.svg?branch=main)](https://travis-ci.com/halliganjs/service-container)
+[![Coverage Status](https://coveralls.io/repos/github/halliganjs/service-container/badge.svg?branch=main)](https://coveralls.io/github/halliganjs/service-container?branch=main)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/halliganjs/service-container.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/halliganjs/service-container/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/halliganjs/service-container.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/halliganjs/service-container/context:javascript)
 ![npm](https://img.shields.io/npm/v/@halliganjs/service-container)
