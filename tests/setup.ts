@@ -1,9 +1,9 @@
-import * as chai from 'chai'
+import * as Chai from 'chai'
 import * as sinon from 'sinon'
 
 type ChaiAndSinonAssert = Chai.Assert & sinon.SinonAssert
 
-const chaiAndSinonAssert = sinon.assert.expose(chai.assert, { prefix: '' }) as unknown as ChaiAndSinonAssert
+const chaiAndSinonAssert = sinon.assert.expose(Chai.assert, { prefix: '' }) as unknown as ChaiAndSinonAssert
 
 declare module 'mocha' {
     export interface Context {
