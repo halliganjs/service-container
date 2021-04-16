@@ -65,3 +65,6 @@ typings/
 
 # Compiled distribution files
 lib/
+
+# Internal test/check dir
+check/

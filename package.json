@@ -3,12 +3,12 @@
   "version": "1.1.0",
   "description": "A simple reusable service container that can be used with Halligan JS or as a standalone library.",
   "files": [
-    "/lib"
+    "/dist"
   ],
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "rm -r ./lib && tsc",
+    "build": "rm -r ./dist && tsc",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
