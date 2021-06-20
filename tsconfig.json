@@ -7,7 +7,7 @@
     "inlineSources": true,
     "inlineSourceMap": true,
     "declaration": true,
-    "outDir": "./lib",
+    "outDir": "./dist",
     "typeRoots": [ "./node_modules/@types" ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -23,7 +23,7 @@
   },
   "include": [ "./src/**/*" ],
   "exclude": [
-    "./lib",
+    "./dist",
     "./node_modules",
     "./tests"
   ]
