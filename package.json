@@ -1,6 +1,6 @@
 {
   "name": "@halliganjs/service-container",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A simple reusable service container that can be used with Halligan JS or as a standalone library.",
   "files": [
     "/dist"
@@ -43,7 +43,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.1.0",
-    "mocha": "^8.3.2",
+    "mocha": "^9.2.1",
     "nyc": "^15.1.0",
     "sinon": "^10.0.0",
     "ts-node": "^9.1.1",
