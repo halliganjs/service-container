@@ -8,7 +8,7 @@
 ![npm](https://img.shields.io/npm/v/@halliganjs/service-container)
 ![npm](https://img.shields.io/npm/dm/@halliganjs/service-container)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/@halliganjs/service-container)
-![Maintenance](https://img.shields.io/maintenance/yes/2021)
+![Maintenance](https://img.shields.io/maintenance/yes/2022)
 
 The Service Container provides a very simple, centralized container that stores and resolves libraries, objects, and values to better organize code, manage dependencies, and enhance testability.
 

@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2]
+### Security
+- Bump dependency `ajv` to 6.12.6
+- Bump dependency `path-parse` to 1.0.7
+
 ## [1.1.1]
 ### Security
 - Bump dependency `glob-parent` to 5.1.2
@@ -77,7 +82,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Binding` class with `BindingInterface`
 - `Container` class with `ContainerInterface`
 
-[Unreleased]: https://github.com/halliganjs/service-container/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/halliganjs/service-container/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/halliganjs/service-container/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/halliganjs/service-container/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/halliganjs/service-container/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/halliganjs/service-container/compare/v0.4.0...v1.0.0
